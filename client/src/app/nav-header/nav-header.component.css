@@ -1,0 +1,10 @@
+.navbar-form {
+    display: flex;
+    align-items: center;
+}
+/* Items will butt up next to each other using flexbox so the inline
+spacing that existed before will be gone. So we replicate it. */
+.navbar-form > .form-group {
+    margin-right: 0.25rem;
+}
+

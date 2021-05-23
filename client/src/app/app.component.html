@@ -1,5 +1,27 @@
-<h1>{{title}}</h1>
 
-<ul>
-<li *ngFor='let user of users'>{{user.id}} - {{user.userName}}</li>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" >
+  <button class="navbar-toggler" style="margin: 10px;" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+  aria-controls="collapseExample" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<ul class="nav navbar-nav navbar-logo justify-content-center">
+  <li class="nav-item position-relative">
+    <a class="nav-link" href="#" class="position-absolute top-100 start-50 translate-middle mt-1 bi bi-caret-down-fill">USA-Turnos</a>
+  </li>
 </ul>
+<app-nav-header></app-nav-header>
+</header>
+
+
+<div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+  <app-nav class="position-relative"></app-nav>
+</div>
+
+
+<main>
+  <div class="container" style="margin-top: 100px;">
+    <ul>
+      <li *ngFor='let user of users'>{{user.id}}-{{user.userName}}</li>
+    </ul>
+  </div>
+</main>

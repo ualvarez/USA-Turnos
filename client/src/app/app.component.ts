@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,18 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'The USA-Turnos App';
   users: any;
+  public  isCollapsed: boolean = false;
 
-  ngOnInit(){
-   this.getUsers();
+  ngOnInit() {
+    this.getUsers();
   }
 
-getUsers(){
-  this.http.get('https://localhost:5001/api/users').subscribe(response => {
-    this.users = response;
-  }, error => {
-    console.log(error);
-  })
-}
+ 
+
+  getUsers() {
+    this.http.get('https://localhost:5001/api/users').subscribe(response => {
+      this.users = response;
+    }, error => {
+      console.log(error);
+    })
+  }
+
 
   constructor(private http: HttpClient) { }
 }

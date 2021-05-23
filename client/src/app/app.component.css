@@ -1,0 +1,8 @@
+
+#navigation{
+    position: absolute;
+}
+
+.page-container{
+    display: flex;
+}
