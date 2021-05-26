@@ -10,12 +10,14 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
-    NavComponent, NavHeaderComponent
+    NavComponent, NavHeaderComponent, HomeComponent, RegisterComponent
   ],
   imports: [
     BrowserModule,
