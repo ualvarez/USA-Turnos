@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
@@ -12,7 +11,7 @@ import { AccountService } from './_services/account.service';
 export class AppComponent implements OnInit {
   title = 'The USA-Turnos App';
   users: any;
-  public  isCollapsed: boolean = false;
+  public  isCollapsed: boolean = true;
 
   
   constructor(private accountService : AccountService) { 

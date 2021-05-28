@@ -1,12 +1,12 @@
 <div class="container">
-    <div dropdown class="dropdown" *ngIf="accountService.currentUser$ | async" >
-        <a dropdownToggle href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+    <div dropdown class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" >
+        <a dropdownToggle  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>Cuenta</strong>
+          <strong>Bienvenido {{user.username | titlecase }}</strong>
         </a>
         <ul *dropdownMenu class="dropdown-menu dropdown-menu-dark bg-dark text-medium shadow mt-2" aria-labelledby="dropdownUser1">       
-          <li><a class="dropdown-item" href="#">Opciones</a></li>
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><a class="dropdown-item" >Opciones</a></li>
+          <li><a class="dropdown-item" >Perfil</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
         </ul>
@@ -34,8 +34,6 @@
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-o">Login</button>
                 </div>
             </form>
-           
-         
        
         </ul>
 </div>

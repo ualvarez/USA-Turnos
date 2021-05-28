@@ -9,15 +9,18 @@ import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ServiceListComponent } from './services/service-list/service-list.component';
+import { ServiceDetailComponent } from './services/service-detail/service-detail.component';
+import { SharedModule } from './_modules/shared.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent, 
-    NavComponent, NavHeaderComponent, HomeComponent, RegisterComponent
+    NavComponent, NavHeaderComponent, HomeComponent, RegisterComponent, ServiceListComponent, ServiceDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule,
     CollapseModule.forRoot(),       
     FormsModule,
-    BsDropdownModule.forRoot()
+    SharedModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ spacing that existed before will be gone. So we replicate it. */
     margin-right: 0.25rem;
 }
 
-.dropdown-menu, .dropdown-item{
+.dropdown-menu, .dropdown-item, a{
     cursor:pointer;
 }
 
