@@ -22,9 +22,6 @@ model: any = {}
   login(){
     this.accountService.login(this.model).subscribe(response => {
      this.router.navigateByUrl('/services'); 
-    }, error =>{
-      console.log(error);
-      this.toastr.error(error.error);      
     })
   }
 

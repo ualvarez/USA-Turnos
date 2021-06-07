@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
 import { ServiceDetailComponent } from './services/service-detail/service-detail.component';
 import { ServiceListComponent } from './services/service-list/service-list.component';
@@ -16,8 +19,10 @@ const routes: Routes = [
       {path: 'service/:id', component: ServiceDetailComponent}
     ]
   },
- 
-  {path: '**', component: HomeComponent,pathMatch: 'full'}
+  {path: 'errors', component: TestErrorsComponent}, 
+  {path: 'not-found', component: NotFoundComponent},
+  {path: 'server-error', component: ServerErrorComponent},
+  {path: '**', component: NotFoundComponent,pathMatch: 'full'}
  
 ];
 
