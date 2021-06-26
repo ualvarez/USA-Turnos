@@ -1,0 +1,31 @@
+[
+  '{{repeat(5)}}',
+  {
+    UserName: '{{firstName("female")}}', 
+    Created: '{{date(new Date(2019, 0, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+    LastActive: '{{date(new Date(2020, 4, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',  
+    Photos: [
+        {
+          Url: function(num) {
+          return 'https://randomuser.me/api/portraits/women/' + num.integer(1,99) + '.jpg';
+        },
+        IsMain: true
+      }
+    ],
+   Services: [
+      '{{repeat(2)}}',
+      {        
+        Name: '{{firstName()}}',
+        Description: '{{lorem(1, "paragraphs")}}',
+        Photos: [
+        {
+          Url: function(num) {
+          return 'https://randomuser.me/api/portraits/lego/' + num.integer(1,99) + '.jpg';
+        },
+        IsMain: true
+      }
+    ]
+      }
+    ]              
+  }
+]

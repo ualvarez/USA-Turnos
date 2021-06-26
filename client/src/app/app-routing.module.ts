@@ -9,21 +9,21 @@ import { ServiceListComponent } from './services/service-list/service-list.compo
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  { path: '', component: HomeComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
-    children:[
-      {path: 'services', component: ServiceListComponent, canActivate: [AuthGuard]},
-      {path: 'service/:id', component: ServiceDetailComponent}
+    children: [
+      { path: 'services', component: ServiceListComponent, canActivate: [AuthGuard] },
+      { path: 'service/:id', component: ServiceDetailComponent }
     ]
   },
-  {path: 'errors', component: TestErrorsComponent}, 
-  {path: 'not-found', component: NotFoundComponent},
-  {path: 'server-error', component: ServerErrorComponent},
-  {path: '**', component: NotFoundComponent,pathMatch: 'full'}
- 
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'server-error', component: ServerErrorComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' }
+
 ];
 
 @NgModule({
