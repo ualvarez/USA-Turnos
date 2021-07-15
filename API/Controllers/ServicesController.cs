@@ -29,10 +29,10 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("{username}")]
-        public async Task<ActionResult<ServiceDto>> GetService(string username)
+        [HttpGet("{name}")]
+        public async Task<ActionResult<ServiceDto>> GetService(string name)
         {
-            return await _serviceRepository.GetServiceDtoByNameAsync(username);
+            return await _serviceRepository.GetServiceDtoByNameAsync(name);
         }
 
     }

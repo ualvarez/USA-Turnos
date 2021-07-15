@@ -44,16 +44,17 @@ namespace API.Data
         public async Task<MemberDto> GetMemberAsync(string username)
         {
            return await _context.Users
-           .Where(x => x.UserName == username)
+           .Where(x => x.UserName == username)          
            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
            .SingleOrDefaultAsync();
         }
 
         public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
-            return await _context.Users
-            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            var members = await _context.Users                 
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)                        
             .ToListAsync();
+            return members; 
         }
 
         public async Task<bool> SaveAllAsync()

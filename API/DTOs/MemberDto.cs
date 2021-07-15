@@ -14,7 +14,7 @@ namespace API.DTOs
          public DateTime Created { get; set; } 
         public DateTime LastActive { get; set; } 
 
-        public ICollection<Service> Services { get; set; }
+        public ICollection<ServiceDto> Services { get; set; }
 
         public ICollection<UserPhotoDto> Photos { get; set; }
     }

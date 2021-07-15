@@ -1,0 +1,17 @@
+<div class="card mb-12">
+    <div class="card-img-wrapper text-center">
+        <img src="{{service.photoUrl || './assets/user.png'}}" alt="{{service.name}}" class="rounded-circle">
+        <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item"><button routerLink='/services/{{service.name}}' class="btn btn-primary" data-bs-toggle="tooltip" title="Solicitar Turno"><i
+                        class="bi-alarm"></i></button></li>
+            <li class="list-inline-item"><button routerLink='/services/{{service.name}}' class="btn btn-primary" data-bs-toggle="tooltip" title="Más Información"><i class="bi-info-circle"></i></button></li>          
+        </ul>
+        <h6 class="card-title text-center mb-1">
+            <span>
+                <i class="bi-building mr-2"></i>
+            </span>
+            {{service.name}}
+        </h6>
+        <p class="card-text text-muted text-center">{{service.description}}</p>
+    </div>
+   

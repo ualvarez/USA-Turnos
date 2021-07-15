@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RegisterComponent } from '../_modules/register/register.component';
 
 @Component({
   selector: 'app-home',

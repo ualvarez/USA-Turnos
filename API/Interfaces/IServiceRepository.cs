@@ -20,5 +20,6 @@ namespace API.Interfaces
         Task<IEnumerable<ServiceDto>> GetServicesDtoAsync();
 
         Task<ServiceDto> GetServiceDtoByNameAsync(string name);
+
     }
 }
