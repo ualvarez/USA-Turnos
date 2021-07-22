@@ -7,6 +7,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { FormsModule } from '@angular/forms';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from '../_interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
       positionClass: 'toast-bottom-center'
     }),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxSpinnerModule
   ],
   exports: [
     FormsModule,
@@ -29,8 +33,13 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     ToastrModule,
     CommonModule,
     TabsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxSpinnerModule
 
+
+  ],
+  providers:[
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ]
 
 })

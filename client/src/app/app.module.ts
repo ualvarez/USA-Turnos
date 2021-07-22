@@ -29,6 +29,7 @@ import { RegisterModule } from './_modules/register/register.module';
 
 
 
+
 @NgModule({
   declarations: [AppComponent, NavComponent, NavHeaderComponent, HomeComponent, TestErrorsComponent, NotFoundComponent, ServerErrorComponent],
   imports: [AppRoutingModule, HttpClientModule, CollapseModule.forRoot(), SharedModule, RegisterModule, BrowserModule, BrowserAnimationsModule],

@@ -5,11 +5,27 @@
                 class="card-img-top img-thumbnail">
             <div class="card-body">
                 <div>
-                    <strong>Member since:</strong>
+                    <strong>Ubicación:</strong>
+                    <p>{{member.country + ', ' + member.city}}</p>
+                </div>
+                <div>
+                    <strong>Edad:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Teléfono:</strong>
+                    <p>{{member.phoneNumber}}</p>
+                </div>
+                <div>
+                    <strong>Email:</strong>
+                    <p>{{member.email}}</p>
+                </div>
+                <div>
+                    <strong>Miembro desde:</strong>
                     <p>{{member.created}}</p>
                 </div>
                 <div>
-                    <strong>Last Active:</strong>
+                    <strong>Última conexión:</strong>
                     <p>{{member.lastActive}}</p>
                 </div>
             </div>
@@ -22,15 +38,16 @@
     </div>
     <div class="col-8">
         <tabset class="member-tabset">
-            <tab heading='Servicios brindados por {{member.userName}}'>
-                <div>
-                    <ul class="list-inline animate text-center" *ngFor="let service of member.services">
-                        <li class="list-inline-item">{{service.name}}</li>
-                    </ul>
-                </div>
+            <tab heading='Acerca de {{member.userName}}'>
+                <h4>Nombre completo</h4>
+                <p>{{member.name + " " + member.surname}}</p>
+                <h4>Intereses</h4>
+                <p>{{member.interests}}</p>
+            </tab>
+            <tab heading='Servicios brindados por {{member.userName}}'>              
                 <ngx-gallery [options]="serviceGalleryOptions" [images]="serviceGalleryImages" 
                style="display: inline-block; margin-bottom: 20px;"></ngx-gallery>
-            </tab>
+            </tab>            
             <tab heading='Fotos'>
                <ngx-gallery [options]="memberGalleryOptions" [images]="memberGalleryImages" 
                style="display: inline-block; margin-bottom: 20px;"></ngx-gallery>

@@ -13,6 +13,8 @@ namespace API.Data
         public DbSet<Service> Services { get; set; }
 
         public DbSet<ServicePhoto> ServicesPhotos {get; set;}
+
+        public DbSet<Appointment> Appointments { get; set; }
         
     }
 }

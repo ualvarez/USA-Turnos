@@ -44,40 +44,43 @@ export class MemberDetailComponent implements OnInit {
       }
     ]
 
-   
+
   }
 
-  getMemberImages(): NgxGalleryImage[]{
-    const imagerUrls=[];
-    for(const photo of this.member.photos){
-      imagerUrls.push({
-        small: photo?.url,
-        medium: photo?.url,
-        big: photo?.url
-      })
+  getMemberImages(): NgxGalleryImage[] {
+    const imagerUrls = [];
+    if (this.member?.photos != null) {
+      for (const photo of this.member.photos) {
+        imagerUrls.push({
+          small: photo?.url,
+          medium: photo?.url,
+          big: photo?.url
+        })
+      }
     }
 
     return imagerUrls;
   }
 
-  getServiceImages(): NgxGalleryImage[]{
-    const imagerUrls=[];
-    for(const service of this.member.services){      
-      for(const photo of service.photos)
-      imagerUrls.push({
-        small: photo?.url,
-        medium: photo?.url,
-        big: photo?.url
-      })
+  getServiceImages(): NgxGalleryImage[] {
+    const imagerUrls = [];
+    if (this.member?.services != null) {
+      for (const service of this.member.services) {
+        for (const photo of service.photos)
+          imagerUrls.push({
+            small: photo?.url,
+            medium: photo?.url,
+            big: photo?.url
+          })
+      }
     }
-
     return imagerUrls;
   }
 
   loadMember() {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
-      this.memberGalleryImages = this.getMemberImages();  
+      this.memberGalleryImages = this.getMemberImages();
       this.serviceGalleryImages = this.getServiceImages();
     })
   }

@@ -2,8 +2,16 @@
   '{{repeat(5)}}',
   {
     UserName: '{{firstName("female")}}', 
+    DateOfBirth: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
     Created: '{{date(new Date(2019, 0, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
-    LastActive: '{{date(new Date(2020, 4, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',  
+    LastActive: '{{date(new Date(2020, 4, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+     Name: '{{firstName("female")}}', 
+     Surname: '{{surname("female")}}', 
+    City: '{{city()}}',
+    Country: '{{country()}}',
+     Email: '{{email()}}',
+    PhoneNumber: '+1 {{phone()}}',
+      Interests: '{{lorem(1, "paragraphs")}}',
     Photos: [
         {
           Url: function(num) {
@@ -20,7 +28,7 @@
         Photos: [
         {
           Url: function(num) {
-          return 'https://randomuser.me/api/portraits/lego/' + num.integer(1,99) + '.jpg';
+          return 'https://randomuser.me/api/portraits/lego/' + num.integer(1,5) + '.jpg';
         },
         IsMain: true
       }

@@ -1,0 +1,85 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Tu perfil</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Información: </strong> Has hecho cambios. Los cambios sin guardar se perderán.
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || 'assets/user.png'}}" alt="{{member.userName}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Ubicación:</strong>
+                    <p>{{member.country + ', ' + member.city}}</p>
+                </div>
+                <div>
+                    <strong>Edad:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Teléfono:</strong>
+                    <p>{{member.phoneNumber}}</p>
+                </div>
+                <div>
+                    <strong>Email:</strong>
+                    <p>{{member.email}}</p>
+                </div>
+                <div>
+                    <strong>Miembro desde:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+                <div>
+                    <strong>Última conexión:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success">Guardar
+                        Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading='Acerca de {{member.userName}}'>
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <div class="form-inline">
+                        <label for="name">Nombre</label>
+                        <input [(ngModel)]="member.name" type="text" name="name" class="form-control mx-2">
+                    </div>
+                    <div class="form-inline">
+                        <label for="surname">Apellido</label>
+                        <input [(ngModel)]="member.surname" type="text" name="surname" class="form-control mx-2">
+                    </div>
+                    <div class="form-inline">
+                        <label for="email">Email</label>
+                        <input [(ngModel)]="member.email" type="text" name="email" class="form-control mx-2">
+                    </div>
+                    <div class="form-inline">
+                        <label for="phoneNumber">Teléfono</label>
+                        <input [(ngModel)]="member.phoneNumber" type="text" name="phoneNumber"
+                            class="form-control mx-2">
+                    </div>
+                    <h4 class="mt-2">Intereses</h4>
+                    <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
+                    <h4 class="mt-2">Ubicación: </h4>
+                    <div class="form-inline">
+                        <label for="city">Ciudad</label>
+                        <input [(ngModel)]="member.city" type="text" name="city" class="form-control mx-2">
+                        <label for="country">País</label>
+                        <input [(ngModel)]="member.country" type="text" name="country" class="form-control mx-2">
+                    </div>
+                </form>
+            </tab>
+            <tab heading='Editar fotos'>
+                <p>Edit photo will go here</p>
+            </tab>
+        </tabset>
+    </div>
+</div>
