@@ -10,6 +10,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from '../_interceptors/loading.interceptor';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { LoadingInterceptor } from '../_interceptors/loading.interceptor';
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule
   ],
   exports: [
     FormsModule,
@@ -34,7 +37,8 @@ import { LoadingInterceptor } from '../_interceptors/loading.interceptor';
     CommonModule,
     TabsModule,
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule
 
 
   ],

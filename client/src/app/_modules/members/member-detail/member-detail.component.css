@@ -13,3 +13,11 @@ height: 85%;
     background-color: #fff;
     border-top: none;
 }
+
+.icon-cog {
+    color: black;
+  }
+
+  .fa-arrow-right {
+	color: green;
+}

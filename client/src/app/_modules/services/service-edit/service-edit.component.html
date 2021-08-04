@@ -1,0 +1,47 @@
+<div class="row" *ngIf="service">
+    <div class="col-4">
+        <h1>{{service.name}}</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Información: </strong> Has hecho cambios. Los cambios sin guardar se perderán.
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{service.photoUrl || 'assets/user.png'}}" alt="{{service.name}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">               
+                <div>
+                    <strong>Descripción:</strong>
+                    <p>{{service.description}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success">Guardar
+                        Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="service-tabset">
+            <tab heading='Acerca de {{service.name}}'>
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateService()">
+                    <div class="form-inline">
+                        <label for="name">Nombre</label>
+                        <input [(ngModel)]="service.name" type="text" name="name" class="form-control mx-2">
+                    </div>
+                    <h4 class="mt-2">Descripción</h4>
+                    <textarea class="form-control" [(ngModel)]="service.description" name="description"
+                        rows="6"></textarea>
+
+                </form>
+            </tab>
+            <tab heading='Editar fotos'>
+             <app-service-photo-editor [service]='service'></app-service-photo-editor>
+            </tab>
+        </tabset>
+    </div>
+</div>

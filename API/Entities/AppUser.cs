@@ -18,15 +18,9 @@ namespace API.Entities
         public string Email { get; set; }
         public string Interests { get; set; }
 
-
-
-
-
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
-
         public ICollection<Service> Services { get; set; }
-
         public ICollection<UserPhoto> Photos { get; set; }
 
 

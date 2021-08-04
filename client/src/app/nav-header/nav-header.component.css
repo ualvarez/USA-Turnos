@@ -12,3 +12,8 @@ spacing that existed before will be gone. So we replicate it. */
     cursor:pointer;
 }
 
+.img {
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+}

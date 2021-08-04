@@ -7,6 +7,7 @@ import { MemberCardComponent } from './member-card/member-card.component';
 import { SharedModule } from '../shared.module';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MemberEditComponent } from './member-edit/member-edit.component';
+import { MemberPhotoEditorComponent } from './member-photo-editor/member-photo-editor.component';
 
 
 
@@ -20,7 +21,8 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
     MembersComponent,
     MemberCardComponent,
     MemberDetailComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    MemberPhotoEditorComponent
   ],
   imports: [
     MembersRoutingModule,

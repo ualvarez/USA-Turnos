@@ -10,6 +10,8 @@ namespace API.DTOs
 
         public string Description { get; set; }
 
+        public string PhotoUrl { get; set; }
+
        public ICollection<ServicePhotoDto> Photos { get; set; }
     }
 }

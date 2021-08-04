@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { fakeAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+
 import { Member } from 'src/app/_models/member';
 import { MembersService } from '../members.service';
 
@@ -11,11 +12,13 @@ import { MembersService } from '../members.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
+
   member: Member;
   memberGalleryOptions: NgxGalleryOptions[];
   memberGalleryImages: NgxGalleryImage[];
   serviceGalleryOptions: NgxGalleryOptions[];
   serviceGalleryImages: NgxGalleryImage[];
+
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
 
@@ -29,21 +32,26 @@ export class MemberDetailComponent implements OnInit {
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false
+        preview: false,      
+        arrowNextIcon: 'bi bi-arrow-right-circle',
+        arrowPrevIcon: 'bi bi-arrow-left-circle'
       }
     ]
 
     this.serviceGalleryOptions = [
-      {
+      {        
         width: '500px',
         height: '500px',
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false
+        preview: false,
+        arrowNextIcon: 'fa fa-arrow-right',
+        arrowPrevIcon: 'fa fa-arrow-left'
       }
     ]
-
+this.memberGalleryImages = this.getMemberImages();
+this.serviceGalleryImages = this.getServiceImages();
 
   }
 
@@ -84,5 +92,6 @@ export class MemberDetailComponent implements OnInit {
       this.serviceGalleryImages = this.getServiceImages();
     })
   }
+
 
 }
