@@ -1,17 +1,32 @@
-<form (ngSubmit)="register()" #registerForm="ngForm" autocomplete="off">
-    <h2 class="text-center text-primary">Iniciar Sesión</h2>
+<form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2 class="text-center text-primary">Registrarme como Usuario</h2>
     <hr>
-    <div class="form-group mb-3">
-        <input class="form-control" type="text" name="username" [(ngModel)]="model.username"
-            placeholder="Nombre de Usuario">
-    </div>
-    <div class="form-group mb-3">
-        <input class="form-control" type="password" name="password" [(ngModel)]="model.password"
-            placeholder="Contraseña">
+    <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Nombre de usuario"'></app-text-input>
+    <app-text-input [formControl]='registerForm.controls["name"]' [label]='"Nombre"'></app-text-input>
+    <app-text-input [formControl]='registerForm.controls["surname"]' [label]='"Apellido"'></app-text-input>
+    <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [label]='"Fecha de Nacimiento"'
+        [maxDate]="maxDate">
+    </app-date-input>
+    <app-text-input [formControl]='registerForm.controls["city"]' [label]='"Ciudad"'></app-text-input>
+    <app-text-input [formControl]='registerForm.controls["country"]' [label]='"País"'></app-text-input>
+    <app-text-input [formControl]='registerForm.controls["phoneNumber"]' [label]='"Teléfono"'></app-text-input>
+    <app-text-input [formControl]='registerForm.controls["email"]' [label]='"Email"'></app-text-input>
+    <textarea class="form-control mb-3" placeholder="Una descripción sobre mi" formControlName="interests"
+        name="interests" rows="6"></textarea>
+    <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Contraseña"' [type]='"password"'>
+    </app-text-input>
+    <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Confirmar Contraseña"'
+        [type]='"password"'></app-text-input>
+
+    <div class="row" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">{{error}}</li>
+        </ul>
     </div>
     <div class="form-group mb-3 text-center">
         <button [disabled]='registerForm.invalid' class="btn btn-success" type="submit">Registrarse</button>
-        <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
+        <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancelar</button>
     </div>
 
 </form>
+

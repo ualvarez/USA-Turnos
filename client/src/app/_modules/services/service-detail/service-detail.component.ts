@@ -28,9 +28,7 @@ export class ServiceDetailComponent implements OnInit {
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false,
-        arrowNextIcon: 'bi bi-arrow-right-circle-fill',
-        arrowPrevIcon: 'bi bi-arrow-left-circle-fill'
+        preview: false      
       }
     ]
    

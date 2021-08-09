@@ -20,8 +20,9 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
-import { SharedModule } from './_modules/shared.module';
+import { SharedModule } from './_modules/shared/shared.module';
 import { RegisterModule } from './_modules/register/register.module';
+
 
 
 

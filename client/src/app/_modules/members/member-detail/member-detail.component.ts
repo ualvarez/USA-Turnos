@@ -32,9 +32,8 @@ export class MemberDetailComponent implements OnInit {
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false,      
-        arrowNextIcon: 'bi bi-arrow-right-circle',
-        arrowPrevIcon: 'bi bi-arrow-left-circle'
+        preview: false
+      
       }
     ]
 
@@ -45,9 +44,7 @@ export class MemberDetailComponent implements OnInit {
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false,
-        arrowNextIcon: 'fa fa-arrow-right',
-        arrowPrevIcon: 'fa fa-arrow-left'
+        preview: false       
       }
     ]
 this.memberGalleryImages = this.getMemberImages();

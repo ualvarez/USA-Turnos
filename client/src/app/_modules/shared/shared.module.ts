@@ -5,18 +5,21 @@ import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoadingInterceptor } from '../_interceptors/loading.interceptor';
+import { LoadingInterceptor } from '../../_interceptors/loading.interceptor';
 import { FileUploadModule } from 'ng2-file-upload';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 
 
 @NgModule({
-  declarations: [
-
+  declarations: [  
+    TextInputComponent, DateInputComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     TabsModule.forRoot(),
     NgxGalleryModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot()
   ],
   exports: [
     FormsModule,
@@ -38,7 +43,11 @@ import { FileUploadModule } from 'ng2-file-upload';
     TabsModule,
     NgxGalleryModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    ReactiveFormsModule,
+    TextInputComponent,
+    BsDatepickerModule,
+    DateInputComponent
 
 
   ],

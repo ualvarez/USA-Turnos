@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
