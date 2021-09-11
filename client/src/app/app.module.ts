@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -22,11 +22,16 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 import { SharedModule } from './_modules/shared/shared.module';
 import { RegisterModule } from './_modules/register/register.module';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
 
 
 
 
 
+
+
+registerLocaleData(localeEsAr, 'es-Ar');
 
 
 
@@ -36,10 +41,13 @@ import { RegisterModule } from './_modules/register/register.module';
   imports: [AppRoutingModule, HttpClientModule, CollapseModule.forRoot(), SharedModule, RegisterModule, BrowserModule, BrowserAnimationsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+     { provide: LOCALE_ID, useValue: 'es-Ar' } ,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  
 
 }

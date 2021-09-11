@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210903000208_make date as a key for appointment")]
+    partial class makedateasakeyforappointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,16 +73,19 @@ namespace API.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int?>("AppUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ServiceId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Date", "ServiceId");
+                    b.HasKey("Date");
 
                     b.HasIndex("AppUserId");
 
@@ -168,10 +173,8 @@ namespace API.Data.Migrations
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("API.Entities.Service", "Service")
-                        .WithMany("Appointments")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ServiceId");
 
                     b.Navigation("AppUser");
 
@@ -222,8 +225,6 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Service", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618

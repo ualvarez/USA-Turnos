@@ -1,3 +1,4 @@
+<body>
 <ngx-spinner>
   <h3>Cargando...</h3>
 </ngx-spinner>
@@ -10,13 +11,16 @@
     <a style="position: absolute; padding-left: 30px; margin-left: 60px;" href="/">USA-Turnos</a>
 
 
-<app-nav-header></app-nav-header>
+<app-nav-header  ></app-nav-header>
+
 </header>
 
 
-<div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-  <app-nav></app-nav>
+<div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" style="position: sticky; top: 60px; z-index: 1;"  >
+  <app-nav  ></app-nav>
 </div>
+
+
 
 
 <div class="container" style="margin-top: 100px;">  
@@ -24,3 +28,4 @@
       <main></main>     
     </router-outlet>
 </div>
+</body>

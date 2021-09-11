@@ -74,7 +74,8 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 Name = user.Name,
-                Surname = user.Surname
+                Surname = user.Surname,
+                
             };
 
         }

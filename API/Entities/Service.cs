@@ -10,7 +10,11 @@ namespace API.Entities
 
         public string Description { get; set; }
 
-       public ICollection<ServicePhoto> Photos { get; set; }
-      
+        public ICollection<ServicePhoto> Photos { get; set; }
+        public AppUser AppUser { get; set; }
+        public int AppUserId { get; set; }
+
+        public ICollection<Appointment> Appointments { get; set; }
+
     }
 }

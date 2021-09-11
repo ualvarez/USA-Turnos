@@ -14,7 +14,14 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule, TimeagoIntl, TimeagoFormatter, TimeagoCustomFormatter } from 'ngx-timeago';
+import {strings as spanishStrings} from 'ngx-timeago/language-strings/es';
 
+export class MyIntl extends TimeagoIntl {
+  // do extra stuff here...
+  }
 
 
 @NgModule({
@@ -33,7 +40,14 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     NgxSpinnerModule,
     FileUploadModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TimeagoModule.forRoot({
+      intl: { provide: TimeagoIntl, useClass: MyIntl },
+      formatter: { provide: TimeagoFormatter, useClass: TimeagoCustomFormatter },
+    })
+
   ],
   exports: [
     FormsModule,
@@ -47,7 +61,10 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     ReactiveFormsModule,
     TextInputComponent,
     BsDatepickerModule,
-    DateInputComponent
+    DateInputComponent,
+    PaginationModule,
+    ButtonsModule,
+    TimeagoModule
 
 
   ],
@@ -56,4 +73,10 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
   ]
 
 })
-export class SharedModule { }
+export class SharedModule { 
+
+  constructor(intl: TimeagoIntl) {
+    intl.strings = spanishStrings;
+    intl.changes.next();
+  }
+}

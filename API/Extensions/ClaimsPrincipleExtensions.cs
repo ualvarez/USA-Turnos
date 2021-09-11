@@ -5,7 +5,14 @@ namespace API.Extensions
     {
         public static string GetUsername(this ClaimsPrincipal user)
         {
-            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //ClaimTyes.Name represent a uniqueName that was setted in our token (see TokenService.cs)
+            return user.FindFirst(ClaimTypes.Name)?.Value;
+        }
+
+          public static int GetUserId(this ClaimsPrincipal user)
+        {
+            //ClaimTyes.NameIdentifier represent a NameId that was setted in our token (see TokenService.cs)
+            return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
         
     }

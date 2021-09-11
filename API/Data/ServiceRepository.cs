@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -19,6 +20,7 @@ namespace API.Data
             _mapper = mapper;
             _context = context;
         }
+
 
         public async Task<IEnumerable<Service>> GetAsync()
         {
@@ -39,7 +41,8 @@ namespace API.Data
             .SingleOrDefaultAsync(x => x.Name == name);
         }
 
-      
+
+
 
         public async Task<ServiceDto> GetServiceDtoByNameAsync(string name)
         {
@@ -49,11 +52,28 @@ namespace API.Data
             .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<ServiceDto>> GetServicesDtoAsync()
+        public async Task<PagedList<ServiceDto>> GetServicesDtoAsync(ServiceParams serviceParams)
         {
-           return await _context.Services
-           .ProjectTo<ServiceDto>(_mapper.ConfigurationProvider)
-           .ToListAsync();
+            IQueryable<Service> services;
+
+            if (!string.IsNullOrEmpty(serviceParams.Username))
+            {
+                services = _context.Services.Include(s => s.AppUser).Where(s => s.AppUser.UserName.ToLower() == serviceParams.Username.ToLower());
+            }
+            else
+            {
+                services = _context.Services;
+            }
+
+            services = serviceParams.OrderBy.ToLower() switch
+            {
+                "name" => services.OrderByDescending(s => s.Name),
+                 "description" => services.OrderByDescending(s => s.Description),
+                _ => services.OrderByDescending(s => s.Name)
+            };
+
+
+            return await PagedList<ServiceDto>.CreateAsync(services.ProjectTo<ServiceDto>(_mapper.ConfigurationProvider).AsNoTracking(), serviceParams.PageNumber, serviceParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()
@@ -65,5 +85,12 @@ namespace API.Data
         {
             _context.Entry(service).State = EntityState.Modified;
         }
+
+        public void Add(Service service)
+        {
+            _context.Services.Add(service);
+
+        }
+
     }
 }

@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210824011158_AppUser in Service")]
+    partial class AppUserinService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,23 +70,27 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Appointment", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AppUserId")
+                    b.Property<int?>("ServiceId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Date", "ServiceId");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("AppUserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ServiceId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Appointments");
                 });
@@ -163,19 +169,17 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Appointment", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "AppUser")
-                        .WithMany("Appointments")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("API.Entities.Service", "Service")
-                        .WithMany("Appointments")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ServiceId");
 
-                    b.Navigation("AppUser");
+                    b.HasOne("API.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Service");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Entities.Service", b =>
@@ -213,8 +217,6 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Photos");
 
                     b.Navigation("Services");
@@ -222,8 +224,6 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Service", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618

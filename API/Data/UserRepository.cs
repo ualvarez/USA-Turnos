@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -43,18 +44,34 @@ namespace API.Data
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
-           return await _context.Users
-           .Where(x => x.UserName == username)          
-           .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-           .SingleOrDefaultAsync();
+            return await _context.Users
+            .Where(x => x.UserName == username)
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            var members = await _context.Users                 
-            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)                        
-            .ToListAsync();
-            return members; 
+            IQueryable<AppUser> users;
+
+            if (string.IsNullOrEmpty(userParams.ServiceName))
+            {
+                users = _context.Users.Include(u => u.Services);
+            }
+            else
+            {
+                users = _context.Users.Include(u => u.Services)
+                     .Where(user => user.Services.Select(service => service.Name.ToLower()).Contains(userParams.ServiceName.ToLower()));
+            }
+
+            users = userParams.OrderBy switch
+            {
+                "created" => users.OrderByDescending(u => u.Created),
+                _ => users.OrderByDescending(u => u.LastActive)
+                
+            };
+
+            return await PagedList<MemberDto>.CreateAsync(users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking(), userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

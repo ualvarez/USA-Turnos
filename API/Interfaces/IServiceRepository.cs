@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Interfaces
 {
@@ -17,9 +18,11 @@ namespace API.Interfaces
 
         Task<Service> GetByNameAsync(string name);
 
-        Task<IEnumerable<ServiceDto>> GetServicesDtoAsync();
+        Task<PagedList<ServiceDto>> GetServicesDtoAsync(ServiceParams serviceParams);
 
         Task<ServiceDto> GetServiceDtoByNameAsync(string name);
+
+        void Add(Service service);
 
     }
 }

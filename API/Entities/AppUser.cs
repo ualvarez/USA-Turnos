@@ -23,6 +23,8 @@ namespace API.Entities
         public ICollection<Service> Services { get; set; }
         public ICollection<UserPhoto> Photos { get; set; }
 
+        public ICollection<Appointment> Appointments { get; set; }
+
 
 
     }

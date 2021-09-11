@@ -33,22 +33,23 @@ export class MemberDetailComponent implements OnInit {
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
         preview: false
-      
+
       }
     ]
 
     this.serviceGalleryOptions = [
-      {        
+      {
         width: '500px',
         height: '500px',
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false       
+        preview: true,
+        previewDescription: true
       }
     ]
-this.memberGalleryImages = this.getMemberImages();
-this.serviceGalleryImages = this.getServiceImages();
+    this.memberGalleryImages = this.getMemberImages();
+    this.serviceGalleryImages = this.getServiceImages();
 
   }
 
@@ -72,11 +73,15 @@ this.serviceGalleryImages = this.getServiceImages();
     if (this.member?.services != null) {
       for (const service of this.member.services) {
         for (const photo of service.photos)
-          imagerUrls.push({
-            small: photo?.url,
-            medium: photo?.url,
-            big: photo?.url
-          })
+          if (photo.isMain) {
+            imagerUrls.push({
+              small: photo?.url,
+              medium: photo?.url,
+              big: photo?.url,
+              description: service.name
+
+            })
+          }
       }
     }
     return imagerUrls;

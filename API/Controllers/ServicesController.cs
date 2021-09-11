@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +27,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ServiceDto>>> GetServices()
+        public async Task<ActionResult<IEnumerable<ServiceDto>>> GetServices([FromQuery] ServiceParams serviceParams)
         {
-            var services = await _serviceRepository.GetServicesDtoAsync();
+            var services = await _serviceRepository.GetServicesDtoAsync(serviceParams);
+
+             Response.AddPaginationHeader(services.CurrentPage, services.PageSize, services.TotalCount, services.TotalPages);
 
             return Ok(services);
         }
@@ -122,8 +126,24 @@ namespace API.Controllers
 
             if(await _serviceRepository.SaveAllAsync()) return Ok();
 
-            return BadRequest("Ocurrió un error al eliminar la foto");
+            return BadRequest("Error al eliminar la foto");
         }
+
+        [HttpPost("Add")]
+        public async Task<ActionResult> Add(ServiceAddDto addServiceDto){
+            if(await _serviceRepository.GetByNameAsync(addServiceDto.Name) != null) return BadRequest("Servicio ya existente!");
+
+            var service = _mapper.Map<Service>(addServiceDto);
+
+            _serviceRepository.Add(service);
+
+            if(await _serviceRepository.SaveAllAsync()) return Ok();
+
+            return BadRequest("Error al agregar el servicio");
+
+        }
+
+        
 
     }
 }

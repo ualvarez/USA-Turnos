@@ -16,8 +16,8 @@
             <span>
                 <i class="bi-person mr-2"></i>
             </span>
-            {{member.userName}}, {{member.created}}
+           {{member.userName}}
         </h6>
-        <p class="card-text text-muted text-center">{{member.lastActive}}</p>
+        <p class="card-text text-muted text-center">Activo {{member.lastActive | timeago}}</p>
     </div>
 </div>
